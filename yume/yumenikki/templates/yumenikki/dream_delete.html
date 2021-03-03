@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">夢の削除フォーム</h1>
+        <p class="lead">削除しましょう</p>
+      </div>
+    </div>
+
+    <div class="container">
+        <form action="" method="POST">
+        {% csrf_token %}
+        <h1>{{ object.title }}</h1>
+        <p>{{ object.content }}</p>
+        <p>{{ object.deadline }}</p>
+        <p>本当に削除しますか？</p>
+        <input type="submit" value="削除">
+    </form>
+    </div>
+    
+    <div class="container">
+        <p class="btn-content"><a href="{% url 'dream_list' %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">一覧に戻る</a></p>
+    </div>
+{% endblock content %}

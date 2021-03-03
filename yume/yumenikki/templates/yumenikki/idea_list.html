@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'todo/css/list.css' %}">
+{% endblock header %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">アイディアを表示</h1>
+        <p class="lead">好きな事を記入しましょう</p>
+    </div>
+</div>
+<div class="container ">
+  
+  {% for dream in dreams %}
+    <div class="one_box">
+      <h1>{{ dream.dream}}
+      <h1>{{ dream.title }}</h1>
+      <h4>{{ dream.create_time }}</h4>
+    </div>
+  <hr>
+
+  <div class="btns">
+          <p class="btn-content"><a href="{% url 'dream_idea_detail' dream.pk %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">詳細</a></p>
+          
+          {% comment %} <p class="btn-content"><a href="{% url 'idea_update' list.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">編集</a></p>
+          <p class="btn-content"><a href="{% url 'idea_delete' list.pk %}" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="true">削除</a></p> {% endcomment %}
+  </div>
+  {% endfor %}
+
+  {% for idea in ideas %}
+    <div class="one_box">
+      <h1>{{ idea.dream}}
+      <h1>{{ idea.title }}</h1>
+      <h4>{{ idea.create_time }}</h4>
+    </div>
+  <hr>
+
+  <div class="btns">
+          <p class="btn-content"><a href="{% url 'idea_detail' idea.pk %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">詳細</a></p>
+          
+          {% comment %} <p class="btn-content"><a href="{% url 'idea_update' list.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">編集</a></p>
+          <p class="btn-content"><a href="{% url 'idea_delete' list.pk %}" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="true">削除</a></p> {% endcomment %}
+  </div>
+  {% endfor %}
+</div>
+{% endblock content %}

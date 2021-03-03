@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'todo/css/list.css' %}">
+{% endblock header %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">夢日記</h1>
+        <p class="lead">好きな事を記入しましょう</p>
+    </div>
+</div>
+<div class="container ">
+  <div>
+    <p class="new-btn"><a href="{% url 'dream_create' %}" class="btn btn-success btn-lg" tabindex="-1" role="button" aria-disabled="true">夢の新規作成</a></p>
+  </div>
+  {% for list in object_list %}
+    <div class="one_box">
+      <h1>{{ list.title }}</h1>
+      <h4>{{ list.create_time }}</h4>
+        <div class="btns">
+          <p class="btn-content"><a href="{% url 'dream_detail' list.pk %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">詳細</a></p>
+          <p class="btn-content"><a href="{% url 'dream_update' list.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">編集</a></p>
+          <p class="btn-content"><a href="{% url 'dream_delete' list.pk %}" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="true">削除</a></p>
+        </div>
+    </div>
+  <hr>
+  {% endfor %}
+</div>
+{% endblock content %}

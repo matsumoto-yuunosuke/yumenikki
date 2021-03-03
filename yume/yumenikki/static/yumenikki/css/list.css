@@ -1,0 +1,13 @@
+.new-btn{
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+}
+
+.btn-content{
+  margin: 1rem;
+}
+
+.btns{
+  display: flex;
+
+}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">夢の詳細</h1>
+        <p class="lead">詳細が見れます</p>
+      </div>
+    </div>
+    <div class="container">
+        <h1>{{ object.title }}</h1>
+        <p>{{ object.content }}</p>
+        <p>{{ object.deadline }}</p>
+    </div>
+
+
+    <div class="container">
+        <p class="btn-content"><a href="{% url 'idea_create' %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">新規作成</a></p>
+        <p class="btn-content"><a href="{% url 'dream_list' %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">一覧に戻る</a></p>
+    </div>
+{% endblock content %}
