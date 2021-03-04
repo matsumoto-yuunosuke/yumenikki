@@ -57,3 +57,10 @@ class IdeaModel(models.Model):
 
     def __str__(self):
         return self.title
+
+# class DreamComment(models.Model):
+#     text = models.TextField()
+#     posted_at = models.DateTimeField(auto_now_add=True)
+#     article = models.ForeignKey(to=DreamModel, related_name='comments', on_delete=models.CASCADE)
+#     def __str__(self):
+#         return self.text
