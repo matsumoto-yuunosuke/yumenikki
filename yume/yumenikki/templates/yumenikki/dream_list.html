@@ -2,10 +2,18 @@
 {% load static %}
 
 {% block header %}
-<link rel="stylesheet" href="{% static 'todo/css/list.css' %}">
+  <link rel="stylesheet" href="{% static 'static/yumenikki/css/list.css' %}">
 {% endblock header %}
 
 {% block content %}
+
+<!--ここは"ナビゲーションバー"です-->
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'idea_list' %}">アイディア</a>
+  </li>
+</ul>
+
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <h1 class="display-4">夢日記</h1>

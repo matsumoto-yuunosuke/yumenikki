@@ -6,10 +6,18 @@
 {% endblock header %}
 
 {% block content %}
+
+<!--ここは"ナビゲーションバー"です-->
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" href="{% url 'dream_list' %}">夢日記</a>
+  </li>
+</ul>
+
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <h1 class="display-4">アイディアを表示</h1>
-        <p class="lead">好きな事を記入しましょう</p>
+        <p class="lead">ここでアイディアを見れます</p>
     </div>
 </div>
 <div class="container ">
@@ -24,9 +32,8 @@
 
   <div class="btns">
           <p class="btn-content"><a href="{% url 'dream_idea_detail' dream.pk %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">詳細</a></p>
-          
-          {% comment %} <p class="btn-content"><a href="{% url 'idea_update' list.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">編集</a></p>
-          <p class="btn-content"><a href="{% url 'idea_delete' list.pk %}" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="true">削除</a></p> {% endcomment %}
+          {% comment %} <p class="btn-content"><a href="{% url 'idea_update' dream.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">編集</a></p> {% endcomment %}
+          {% comment %} <p class="btn-content"><a href="{% url 'idea_delete' dream.pk %}" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="true">削除</a></p> {% endcomment %}
   </div>
   {% endfor %}
 
