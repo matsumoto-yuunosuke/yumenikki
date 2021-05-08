@@ -8,10 +8,27 @@
       </div>
     </div>
     <div class="container">
-        <h1>{{ object.title }}</h1>
-        <h1>{{ object.dream.title }}</h1>
+        <h1>{{ object.dream }}</h1>
+        <h2>{{ object.title }}</h2>
         <p>{{ object.content }}</p>
-        <p>{{ object.deadline }}</p>
+        <p>{{ object.create_time }}</p>
+
+      <div class="post">
+        <div class ="image">
+          {% if object.image_1 %}
+              <img src="{{ object.image_1.url }}" style="width:300px;height:auto">
+          {% endif %}
+          {% if object.image_2 %}
+            <img src="{{ object.image_2.url }}" style="width:300px;height:auto">
+          {% endif %}
+          {% if object.image_3 %}
+            <img src="{{ object.image_3.url }}" style="width:300px;height:auto">
+          {% endif %}
+          {% if object.image_4 %}
+            <img src="{{ object.image_4.url }}" style="width:300px;height:auto">
+          {% endif %}
+        </div>
+      </div>
     </div>
 
 

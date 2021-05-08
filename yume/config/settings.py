@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 #ここで今後、"__pycache__"が作られないようにする
-# import sys
-# sys.dont_write_bytecode = True
+import sys
+sys.dont_write_bytecode = True
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -130,6 +130,12 @@ STATIC_URL = '/static/'
 
 # 一番最後に追加してください
 # CSSファイルや画像ファイルが入っている、staticディレクトリの場所をDjango側に教えてあげます。
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+IMAGE_ROOT = os.path.join(BASE_DIR, 'media')
+
+IMAGE_URL = '/media/'
+
+LOGIN_REDIRECT_URL = '/'

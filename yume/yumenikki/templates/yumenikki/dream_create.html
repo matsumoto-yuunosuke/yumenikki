@@ -4,14 +4,14 @@
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-4">新規作成フォーム</h1>
-        <p class="lead">自由に書きましょう</p>
+        <p class="lead">自由に投稿しましょう</p>
       </div>
     </div>
     <div class="container">
-        <form action="" method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-        <input type="submit" value="保存">
+        <form method="POST" class="post-form" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="save btn btn-default">保存</button>
         </form>
     </div>
     <div class="container">
