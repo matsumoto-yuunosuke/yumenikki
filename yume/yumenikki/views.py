@@ -1,5 +1,7 @@
 from django.views import generic
+from django.shortcuts import render, redirect
 from .models import DreamModel, IdeaModel
+from .forms import UploadImgForm, UploadIdaForm
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -20,20 +22,45 @@ class DreamUpdate(generic.UpdateView):
     template_name = 'yumenikki/dream_update.html'
     model = DreamModel
     fields = ('title', 'content', 'create_time')
-    success_url = reverse_lazy('list')
+    success_url = reverse_lazy('dream_list')
 
 class DreamDelete(generic.DeleteView):
     template_name = 'yumenikki/dream_delete.html'
     model = DreamModel
 
-    success_url = reverse_lazy('list')
+    success_url = reverse_lazy('dream_list')
 
-class DreamCreate(generic.CreateView):
-    template_name = 'yumenikki/dream_create.html'
-    model = DreamModel
-    fields = ('title', 'content', 'create_time')
-
-    success_url = reverse_lazy('list')
+#アップロード
+def dream_upload(request):
+    if request.method == "POST":
+        form = UploadImgForm(request.POST)
+        if form.is_valid():
+            dream = DreamModel()
+            print(request)
+            dream.title = request.POST['title']
+            dream.content = request.POST['content']
+            dream.create_time = request.POST['create_time']
+            try:
+                dream.image_1 = request.FILES['image_1']
+            except:
+                pass
+            try:
+                dream.image_2 = request.FILES['image_2']
+            except:
+                pass
+            try:
+                dream.image_3 = request.FILES['image_3']
+            except:
+                pass
+            try:
+                dream.image_4 = request.FILES['image_4']
+            except:
+                pass
+            dream.save()
+            return redirect('dream_detail', pk=dream.pk)
+    else:
+        form = UploadImgForm()
+    return render(request, 'yumenikki/dream_create.html', {'form': form})
 
 class IdeaList(generic.ListView):
     template_name = 'yumenikki/idea_list.html'
@@ -46,12 +73,37 @@ class IdeaList(generic.ListView):
         return context
 
 
-class IdeaCreate(generic.CreateView):
-    template_name = 'yumenikki/idea_create.html'
-    model = IdeaModel
-    fields = ('title', 'content', 'create_time', 'dream')
-
-    success_url = reverse_lazy('idea_list')
+def idea_upload(request):
+    if request.method == "POST":
+        form = UploadIdaForm(request.POST)
+        if form.is_valid():
+            idea = IdeaModel()
+            print(request)
+            idea.dream = request.POST['dream']
+            idea.title = request.POST['title']
+            idea.content = request.POST['content']
+            idea.create_time = request.POST['create_time']
+            try:
+                idea.image_1 = request.FILES['image_1']
+            except:
+                pass
+            try:
+                idea.image_2 = request.FILES['image_2']
+            except:
+                pass
+            try:
+                idea.image_3 = request.FILES['image_3']
+            except:
+                pass
+            try:
+                idea.image_4 = request.FILES['image_4']
+            except:
+                pass
+            idea.save()
+            return redirect('idea_detail', pk=idea.pk)
+    else:
+        form = UploadIdaForm()
+    return render(request, 'yumenikki/idea_create.html', {'form': form})
 
 class IdeaDetail(generic.DetailView):
     template_name = 'yumenikki/idea_detail.html'

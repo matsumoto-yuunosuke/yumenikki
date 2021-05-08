@@ -8,10 +8,10 @@
       </div>
     </div>
     <div class="container">
-        <form action="" method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-        <input type="submit" value="保存">
+        <form method="POST" class="post-form" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="save btn btn-default">保存</button>
         </form>
     </div>
     <div class="container">

@@ -15,17 +15,43 @@ class DreamModel(models.Model):
         verbose_name="内容"
     )
 
-    image = models.ImageField(
-        verbose_name="画像を投稿",
-        blank=True
+    #画像
+    image_1 = models.ImageField(
+        verbose_name = '画像1',
+        upload_to='media/',
+        blank=True, 
+        null=True,
         )
+
+    image_2 = models.ImageField(
+        verbose_name = '画像2',
+        upload_to='media/',
+        blank=True,
+        null=True,
+        )
+
+    image_3 = models.ImageField(
+        verbose_name = '画像3',
+        upload_to='media/',
+        blank=True,
+        null=True,
+        )
+
+    image_4 = models.ImageField(
+        verbose_name = '画像4',
+        upload_to='media/',
+        blank=True,
+        null=True,
+        )
+
     create_time = models.DateField(
         verbose_name="投稿日",
         default=timezone.now
     )
 
     def __str__(self):
-        return self.title
+        return f"{self.title} {self.content} \
+        {self.image_1} {self.image_2} {self.image_3} {self.image_4} {self.create_time}"
 
 class IdeaModel(models.Model):
     class Meta:
@@ -46,21 +72,40 @@ class IdeaModel(models.Model):
         verbose_name="内容"
     )
 
-    image = models.ImageField(
-        verbose_name="画像を投稿",
-        blank=True
+    #画像
+    image_1 = models.ImageField(
+        verbose_name = '画像1',
+        upload_to='media/',
+        blank=True, 
+        null=True,
         )
+
+    image_2 = models.ImageField(
+        verbose_name = '画像2',
+        upload_to='media/',
+        blank=True,
+        null=True,
+        )
+
+    image_3 = models.ImageField(
+        verbose_name = '画像3',
+        upload_to='media/',
+        blank=True,
+        null=True,
+        )
+
+    image_4 = models.ImageField(
+        verbose_name = '画像4',
+        upload_to='media/',
+        blank=True,
+        null=True,
+        )
+
     create_time = models.DateField(
         verbose_name="投稿日",
         default=timezone.now
     )
 
     def __str__(self):
-        return self.title
-
-# class DreamComment(models.Model):
-#     text = models.TextField()
-#     posted_at = models.DateTimeField(auto_now_add=True)
-#     article = models.ForeignKey(to=DreamModel, related_name='comments', on_delete=models.CASCADE)
-#     def __str__(self):
-#         return self.text
+        return f"{self.dream} {self.title} {self.content} \
+        {self.image_1} {self.image_2} {self.image_3} {self.image_4} {self.create_time}"
