@@ -109,5 +109,11 @@ class IdeaDetail(generic.DetailView):
     template_name = 'yumenikki/idea_detail.html'
     model = IdeaModel
 
+class IdeaDelete(generic.DeleteView):
+    template_name = 'yumenikki/idea_delete.html'
+    model = IdeaModel
+
+    success_url = reverse_lazy('idea_list')
+
 
 
