@@ -140,4 +140,8 @@ IMAGE_URL = '/media/'
 
 LOGIN_URL = '/login/'
 
-LOGIN_REDIRECT_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+
+LOGOUT_URL = '/logout/'
+
+LOGOUT_REDIRECT_URL = '/login/'
