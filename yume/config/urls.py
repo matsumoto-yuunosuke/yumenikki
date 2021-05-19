@@ -8,7 +8,7 @@ from yumenikki import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("yumenikki.urls")),
-    path('login/', views.login),
+    path('login/', views.Login.as_view()),
 ]
 
 if settings.DEBUG:

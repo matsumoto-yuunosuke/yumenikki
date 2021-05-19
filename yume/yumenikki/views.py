@@ -1,4 +1,5 @@
 from django.views import generic
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from .models import DreamModel, IdeaModel
 from .forms import UploadImgForm, UploadIdaForm
@@ -116,13 +117,8 @@ class IdeaDelete(generic.DeleteView):
     success_url = reverse_lazy('idea_list')
 
 #ログイン
-def login(request):
-    context = {}
-
-    if request.method == 'POST':
-        context['req'] == request.POST
-    
-    return render(request, 'yumenikki/login.html', context)
+class Login(LoginView):
+    template_name = 'yumenikki/login.html'
 
 
 
