@@ -117,8 +117,12 @@ class IdeaDelete(generic.DeleteView):
 
 #ログイン
 def login(request):
-	context = {}
-	return render(request, 'yumenikki/login.html', context)
+    context = {}
+
+    if request.method == 'POST':
+        context['req'] == request.POST
+    
+    return render(request, 'yumenikki/login.html', context)
 
 
 
