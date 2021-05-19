@@ -115,5 +115,10 @@ class IdeaDelete(generic.DeleteView):
 
     success_url = reverse_lazy('idea_list')
 
+#ログイン
+def login(request):
+	context = {}
+	return render(request, 'yumenikki/login.html', context)
+
 
 
