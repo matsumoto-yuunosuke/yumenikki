@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts.apps.AccountsConfig',
     'yumenikki.apps.TodoConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -138,10 +139,8 @@ IMAGE_ROOT = os.path.join(BASE_DIR, 'media')
 
 IMAGE_URL = '/media/'
 
-LOGIN_URL = '/login/'
+LOGIN_URL = 'login' # ログインしていないときのリダイレクト先
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'index' # ログイン後のリダイレクト先
 
-LOGOUT_URL = '/logout/'
-
-LOGOUT_REDIRECT_URL = '/login/'
+LOGOUT_REDIRECT_URL = 'index' # ログアウト後のリダイレクト先

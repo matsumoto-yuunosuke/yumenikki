@@ -1,8 +1,7 @@
 from django.views import generic
-from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from .models import DreamModel, IdeaModel
-from .forms import UploadImgForm, UploadIdaForm, UserCreationForm
+from .forms import UploadImgForm, UploadIdaForm
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -116,16 +115,4 @@ class IdeaDelete(generic.DeleteView):
 
     success_url = reverse_lazy('idea_list')
 
-#ログイン
-class Login(LoginView):
-    template_name = 'yumenikki/auth.html'
 
-#新規登録
-def signup(request):
-    context = {}
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.save()
-    return render(request, 'yumenikki/auth.html', context)
