@@ -1,0 +1,20 @@
+{% extends 'yumenikki/base.html' %}
+{% load static %}
+
+{% block header %}
+  <meta charset="utf-8" />
+  <title>LOGOUT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock header %}
+
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid">
+  <form action="" method="POST">
+    {% csrf_token %}
+    <button type="submit">ログアウト</button>
+  </form>
+{% endblock content %}
+
+
+

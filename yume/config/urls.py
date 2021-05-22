@@ -3,15 +3,12 @@ from django.conf.urls import include, url
 from django.contrib.auth.views import LogoutView
 from django.conf import settings
 from django.contrib import admin
-from django.urls import path
-from yumenikki import views
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("yumenikki.urls")),
-    path('logout/', LogoutView.as_view()),
-    path('login/', views.Login.as_view()),
-    path('signup/', views.signup),
+    path('accounts/', include("accounts.urls")),
 ]
 
 if settings.DEBUG:
