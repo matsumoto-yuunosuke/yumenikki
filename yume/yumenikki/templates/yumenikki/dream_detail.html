@@ -7,27 +7,42 @@
         <p class="lead">詳細が見れます</p>
       </div>
     </div>
+
     <div class="container">
-        <h1>{{ object.title }}</h1>
-        <p>{{ object.content }}</p>
-        <p>{{ object.create_time }}</p>
+        <h1>{{ dreammodel.title }}</h1>
+        <p>{{ dreammodel.content }}</p>
+        <p>{{ dreammodel.create_time }}</p>
 
       <div class="post">
         <div class ="image">
-          {% if object.image_1 %}
-              <img src="{{ object.image_1.url }}" style="width:300px;height:auto">
+          {% if dreammodel.image_1 %}
+              <img src="{{ dreammodel.image_1.url }}" style="width:300px;height:auto">
           {% endif %}
-          {% if object.image_2 %}
-            <img src="{{ object.image_2.url }}" style="width:300px;height:auto">
+          {% if dreammodel.image_2 %}
+            <img src="{{ dreammodel.image_2.url }}" style="width:300px;height:auto">
           {% endif %}
-          {% if object.image_3 %}
-            <img src="{{ object.image_3.url }}" style="width:300px;height:auto">
+          {% if dreammodel.image_3 %}
+            <img src="{{ dreammodel.image_3.url }}" style="width:300px;height:auto">
           {% endif %}
-          {% if object.image_4 %}
-            <img src="{{ object.image_4.url }}" style="width:300px;height:auto">
+          {% if dreammodel.image_4 %}
+            <img src="{{ dreammodel.image_4.url }}" style="width:300px;height:auto">
           {% endif %}
         </div>
       </div>
+
+      <div>
+        <form method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="like_count" value="true">
+          <button type="submit" class="btn btn-sm btn-outline-warning">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning-fill" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/>
+              </svg>
+              {{ dreammodel.count }} good
+          </button>
+        </form>
+      </div>
+
     </div>
 
     <div class="container">

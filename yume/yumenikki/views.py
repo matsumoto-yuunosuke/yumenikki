@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .models import DreamModel, IdeaModel
 from .forms import UploadImgForm, UploadIdaForm
 from django.urls import reverse_lazy
+from . import forms
 
 # Create your views here.
 
@@ -10,9 +11,20 @@ class DreamList(generic.ListView):
     template_name = 'yumenikki/dream_list.html'
     model = DreamModel
 
-class DreamDetail(generic.DetailView):
-    template_name = 'yumenikki/dream_detail.html'
-    model = DreamModel
+# class DreamDetail(generic.DetailView):
+#     template_name = 'yumenikki/dream_detail.html'
+#     model = DreamModel
+
+def dream_detali_view(request, pk):
+    obj = DreamModel.objects.get(pk=pk)
+    if request.POST.get('like_count', None):
+        obj.count += 1
+        obj.save()
+    
+    context = {"dreammodel":obj}
+    return render(request, 'yumenikki/dream_detail.html', context)
+
+
 
 class DreamIdeaDetail(generic.DetailView):
     template_name = 'yumenikki/dream_idea_detail.html'
@@ -114,5 +126,3 @@ class IdeaDelete(generic.DeleteView):
     model = IdeaModel
 
     success_url = reverse_lazy('idea_list')
-
-

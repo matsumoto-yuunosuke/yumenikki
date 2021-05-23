@@ -50,6 +50,8 @@ class DreamModel(models.Model):
         default=timezone.now
     )
 
+    count = models.IntegerField(default=0)
+
     def __str__(self):
         return f"{self.title} {self.content} \
         {self.image_1} {self.image_2} {self.image_3} {self.image_4} {self.create_time}"
