@@ -3,7 +3,7 @@ from .views import *
 from . import views
 
 urlpatterns = [
-  path('dream_list/', views.DreamList.as_view(), name='dream_list'),
+  path('dream_list/', views.dream_list_view, name='dream_list'),
   path('dream_detail/<int:pk>/', views.dream_detali_view, name='dream_detail'),
   path('dream_update/<int:pk>/', views.DreamUpdate.as_view(), name='dream_update'),
   path('dream_delete/<int:pk>/', views.DreamDelete.as_view(), name='dream_delete'),
