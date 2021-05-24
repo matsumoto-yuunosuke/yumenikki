@@ -30,14 +30,30 @@
   <div>
     <p class="new-btn"><a href="{% url 'dream_create' %}" class="btn btn-success btn-lg" tabindex="-1" role="button" aria-disabled="true">夢の新規作成</a></p>
   </div>
-  {% for list in object_list %}
+
+  <h1 class="display-1">注目の記事</h1>
+  {% for rank in ranks %}
     <div class="one_box">
-      <h1>{{ list.title }}</h1>
-      <h4>{{ list.create_time }}</h4>
+      <h1>{{ rank.title }}</h1>
+      <h4>{{ rank.create_time }}</h4>
         <div class="btns">
-          <p class="btn-content"><a href="{% url 'dream_detail' list.pk %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">詳細</a></p>
-          <p class="btn-content"><a href="{% url 'dream_update' list.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">編集</a></p>
-          <p class="btn-content"><a href="{% url 'dream_delete' list.pk %}" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="true">削除</a></p>
+          <p class="btn-content"><a href="{% url 'dream_detail' rank.pk %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">詳細</a></p>
+          <p class="btn-content"><a href="{% url 'dream_update' rank.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">編集</a></p>
+          <p class="btn-content"><a href="{% url 'dream_delete' rank.pk %}" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="true">削除</a></p>
+        </div>
+    </div>
+  <hr class="hr-primary" />
+  {% endfor %}
+  
+  <h1 class="display-1">記事を表示</h1>
+  {% for dream in dreams %}
+    <div class="one_box">
+      <h1>{{ dream.title }}</h1>
+      <h4>{{ dream.create_time }}</h4>
+        <div class="btns">
+          <p class="btn-content"><a href="{% url 'dream_detail' dream.pk %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">詳細</a></p>
+          <p class="btn-content"><a href="{% url 'dream_update' dream.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">編集</a></p>
+          <p class="btn-content"><a href="{% url 'dream_delete' dream.pk %}" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="true">削除</a></p>
         </div>
     </div>
   <hr>

@@ -7,9 +7,14 @@ from . import forms
 
 # Create your views here.
 
-class DreamList(generic.ListView):
-    template_name = 'yumenikki/dream_list.html'
-    model = DreamModel
+def dream_list_view(request):
+    ranks = DreamModel.objects.order_by('-count')[:2] # 降順で表示
+    objs = DreamModel.objects.all()
+    context = {
+        'dreams':objs,
+        'ranks':ranks,
+    }
+    return render(request, 'yumenikki/dream_list.html', context)
 
 # class DreamDetail(generic.DetailView):
 #     template_name = 'yumenikki/dream_detail.html'
