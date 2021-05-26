@@ -13,4 +13,5 @@ urlpatterns = [
   path('idea_detail/<int:pk>/', views.IdeaDetail.as_view(), name='idea_detail'),
   path('idea_create/', views.idea_upload, name='idea_create'),
   path('idea_delete/<int:pk>/', views.IdeaDelete.as_view(), name='idea_delete'),
+  path('tags/<slug:slug>/', views.tags, name='tags'),
 ]

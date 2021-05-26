@@ -1,6 +1,6 @@
 from django.views import generic
 from django.shortcuts import render, redirect
-from .models import DreamModel, IdeaModel
+from .models import DreamModel, IdeaModel, Tag
 from .forms import UploadImgForm, UploadIdaForm
 from django.urls import reverse_lazy
 from . import forms
@@ -73,6 +73,7 @@ def dream_upload(request):
                 dream.image_4 = request.FILES['image_4']
             except:
                 pass
+            dream.tags = request.POST['tags']
             dream.save()
             return redirect('dream_detail', pk=dream.pk)
     else:
@@ -131,3 +132,14 @@ class IdeaDelete(generic.DeleteView):
     model = IdeaModel
 
     success_url = reverse_lazy('idea_list')
+
+def tags(request, slug):
+    tag = Tag.objects.get(slug=slug)
+    objs = tag.dreammodel_set.all()
+    # ranks = DreamModel.objects.order_by('-count')[:2]
+
+    context = {
+        'dreams':objs,
+        # 'ranks':ranks,
+    }
+    return render(request, 'yumenikki/tags_list.html', context)

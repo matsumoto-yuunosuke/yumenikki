@@ -5,7 +5,7 @@ from .models import DreamModel, IdeaModel
 class UploadImgForm(forms.ModelForm):
   class Meta:
     model = DreamModel
-    fields = ('title', 'content', 'image_1', 'image_2', 'image_3', 'image_4', 'create_time')
+    fields = ('title', 'content', 'image_1', 'image_2', 'image_3', 'image_4', 'create_time', 'tags')
 
 class UploadIdaForm(forms.ModelForm):
   class Meta:
