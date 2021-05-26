@@ -3,6 +3,14 @@ from django.utils import timezone
 
 # Create your models here.
 
+class Tag(models.Model):
+    slug = models.CharField(primary_key=True, unique=True, max_length=20)
+
+    name = models.CharField(unique=True, max_length=20)
+
+    def __str__(self):
+        return self.slug
+
 class DreamModel(models.Model):
     class Meta:
         verbose_name = "あなたの夢"
@@ -52,9 +60,11 @@ class DreamModel(models.Model):
 
     count = models.IntegerField(default=0)
 
+    tags = models.ManyToManyField(Tag, blank=True)
+
     def __str__(self):
         return f"{self.title} {self.content} \
-        {self.image_1} {self.image_2} {self.image_3} {self.image_4} {self.create_time}"
+        {self.image_1} {self.image_2} {self.image_3} {self.image_4} {self.create_time} {self.tags}"
 
 class IdeaModel(models.Model):
     class Meta:
