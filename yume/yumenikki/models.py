@@ -1,9 +1,10 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth import get_user_model
 
 # Create your models here.
 
-class Tag(models.Model):
+class DreamTag(models.Model):
     slug = models.CharField(primary_key=True, unique=True, max_length=20)
 
     name = models.CharField(unique=True, max_length=20)
@@ -60,11 +61,21 @@ class DreamModel(models.Model):
 
     count = models.IntegerField(default=0)
 
-    tags = models.ManyToManyField(Tag, blank=True)
+    dtags = models.ManyToManyField(DreamTag, blank=True)
 
     def __str__(self):
         return f"{self.title} {self.content} \
-        {self.image_1} {self.image_2} {self.image_3} {self.image_4} {self.create_time} {self.tags}"
+        {self.image_1} {self.image_2} {self.image_3} {self.image_4} {self.create_time}"
+
+
+
+# class IdeaTag(models.Model):
+#     slug = models.CharField(primary_key=True, unique=True, max_length=20)
+
+#     name = models.CharField(unique=True, max_length=20)
+
+#     def __str__(self):
+#         return self.slug
 
 class IdeaModel(models.Model):
     class Meta:
@@ -74,7 +85,7 @@ class IdeaModel(models.Model):
     dream = models.ForeignKey(
         DreamModel,
         verbose_name="Dream",
-        on_delete=models.PROTECT
+        on_delete=models.PROTECT,
     )
 
     title = models.CharField(

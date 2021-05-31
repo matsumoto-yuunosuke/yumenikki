@@ -1,6 +1,6 @@
 from django.views import generic
 from django.shortcuts import render, redirect
-from .models import DreamModel, IdeaModel, Tag
+from .models import DreamModel, IdeaModel, DreamTag
 from .forms import UploadImgForm, UploadIdaForm
 from django.urls import reverse_lazy
 from . import forms
@@ -16,10 +16,6 @@ def dream_list_view(request):
     }
     return render(request, 'yumenikki/dream_list.html', context)
 
-# class DreamDetail(generic.DetailView):
-#     template_name = 'yumenikki/dream_detail.html'
-#     model = DreamModel
-
 def dream_detali_view(request, pk):
     obj = DreamModel.objects.get(pk=pk)
     if request.POST.get('like_count', None):
@@ -29,11 +25,9 @@ def dream_detali_view(request, pk):
     context = {"dreammodel":obj}
     return render(request, 'yumenikki/dream_detail.html', context)
 
-
-
-class DreamIdeaDetail(generic.DetailView):
-    template_name = 'yumenikki/dream_idea_detail.html'
-    model = DreamModel
+# class DreamIdeaDetail(generic.DetailView):
+#     template_name = 'yumenikki/dream_idea_detail.html'
+#     model = DreamModel
 
 class DreamUpdate(generic.UpdateView):
     template_name = 'yumenikki/dream_update.html'
@@ -73,7 +67,7 @@ def dream_upload(request):
                 dream.image_4 = request.FILES['image_4']
             except:
                 pass
-            dream.tags = request.POST['tags']
+            dream.dtags = request.POST['dtags']
             dream.save()
             return redirect('dream_detail', pk=dream.pk)
     else:
@@ -91,41 +85,73 @@ class IdeaList(generic.ListView):
         return context
 
 
-def idea_upload(request):
-    if request.method == "POST":
-        form = UploadIdaForm(request.POST)
-        if form.is_valid():
-            idea = IdeaModel()
-            print(request)
-            idea.dream = request.POST['dream']
-            idea.title = request.POST['title']
-            idea.content = request.POST['content']
-            idea.create_time = request.POST['create_time']
-            try:
-                idea.image_1 = request.FILES['image_1']
-            except:
-                pass
-            try:
-                idea.image_2 = request.FILES['image_2']
-            except:
-                pass
-            try:
-                idea.image_3 = request.FILES['image_3']
-            except:
-                pass
-            try:
-                idea.image_4 = request.FILES['image_4']
-            except:
-                pass
-            idea.save()
-            return redirect('idea_detail', pk=idea.pk)
+def idea_upload(request, pk):
+    obj = DreamModel.objects.get(pk=pk)
+    if request.method == 'POST':
+            form = UploadIdaForm(request.POST)
+            if form.is_valid():
+                idea = form.save(commit=False)
+                idea.dream = obj
+                idea.title = request.POST['title']
+                idea.content = request.POST['content']
+                idea.create_time = request.POST['create_time']
+                try:
+                    idea.image_1 = request.FILES['image_1']
+                except:
+                    pass
+                try:
+                    idea.image_2 = request.FILES['image_2']
+                except:
+                    pass
+                try:
+                    idea.image_3 = request.FILES['image_3']
+                except:
+                    pass
+                try:
+                    idea.image_4 = request.FILES['image_4']
+                except:
+                    pass
+                idea.save()
+                return redirect('idea_detail', pk=form.pk)
     else:
         form = UploadIdaForm()
     return render(request, 'yumenikki/idea_create.html', {'form': form})
 
-class IdeaDetail(generic.DetailView):
-    template_name = 'yumenikki/idea_detail.html'
-    model = IdeaModel
+    # if request.method == "POST":
+    #     form = UploadIdaForm(request.POST)
+    #     if form.is_valid():
+    #         idea = IdeaModel()
+    #         print(request)
+    #         idea.dream = request.POST['dream']
+    #         idea.title = request.POST['title']
+    #         idea.content = request.POST['content']
+    #         idea.create_time = request.POST['create_time']
+    #         try:
+    #             idea.image_1 = request.FILES['image_1']
+    #         except:
+    #             pass
+    #         try:
+    #             idea.image_2 = request.FILES['image_2']
+    #         except:
+    #             pass
+    #         try:
+    #             idea.image_3 = request.FILES['image_3']
+    #         except:
+    #             pass
+    #         try:
+    #             idea.image_4 = request.FILES['image_4']
+    #         except:
+    #             pass
+    #         idea.save()
+    #         return redirect('idea_detail', pk=idea.pk)
+    # else:
+    #     form = UploadIdaForm()
+    # return render(request, 'yumenikki/idea_create.html', {'form': form})
+
+def idea_detali_view(request, pk):
+    obj = IdeaModel.objects.get(pk=pk)
+    context = {"ideamodel":obj}
+    return render(request, 'yumenikki/idea_detail.html', context)
 
 class IdeaDelete(generic.DeleteView):
     template_name = 'yumenikki/idea_delete.html'
@@ -134,7 +160,7 @@ class IdeaDelete(generic.DeleteView):
     success_url = reverse_lazy('idea_list')
 
 def tags(request, slug):
-    tag = Tag.objects.get(slug=slug)
+    tag = DreamTag.objects.get(slug=slug)
     objs = tag.dreammodel_set.all()
     # ranks = DreamModel.objects.order_by('-count')[:2]
 
