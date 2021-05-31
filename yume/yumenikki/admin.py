@@ -1,14 +1,14 @@
 from django.contrib import admin
-from yumenikki.models import DreamModel, IdeaModel, Tag
+from .models import DreamModel, IdeaModel, DreamTag
 
 # Register your models here.
-class TagInline(admin.TabularInline):
-  model = DreamModel.tags.through
+class DreamTagInline(admin.TabularInline):
+  model = DreamModel.dtags.through
 
 class DreamModelAdmin(admin.ModelAdmin):
-  inlines = [TagInline]
-  exclude = ['tags']
+  inlines = [DreamTagInline]
+  exclude = ['dtags']
 
 admin.site.register(DreamModel, DreamModelAdmin)
 admin.site.register(IdeaModel)
-admin.site.register(Tag)
+admin.site.register(DreamTag)
