@@ -8,9 +8,12 @@
       </div>
     </div>
     <div class="container">
-        <h2>{{ ideamodel.title }}</h2>
-        <p>{{ ideamodel.content }}</p>
+        <h1>{{ ideamodel.title }}</h1>
         <p>{{ ideamodel.create_time }}</p>
+
+      <div class="my-4">
+        {{ ideamodel.content }}
+      </div>
 
       <div class="post">
         <div class ="image">
@@ -27,6 +30,11 @@
             <img src="{{ ideamodel.image_4.url }}" style="width:300px;height:auto">
           {% endif %}
         </div>
+      </div>
+
+      <div class="my-2">
+        <p><a href="/dream_detail/{{ ideamodel.dream.pk }}/" type="button" class="btn btn-outline-secondary">
+        引用元</a></p>
       </div>
     </div>
 

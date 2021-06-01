@@ -65,7 +65,7 @@ class DreamModel(models.Model):
 
     def __str__(self):
         return f"{self.title} {self.content} \
-        {self.image_1} {self.image_2} {self.image_3} {self.image_4} {self.create_time}"
+        {self.image_1} {self.image_2} {self.image_3} {self.image_4} {self.create_time} {self.dtags}"
 
 
 

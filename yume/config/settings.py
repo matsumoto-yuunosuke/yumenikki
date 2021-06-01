@@ -141,6 +141,6 @@ IMAGE_URL = '/media/'
 
 LOGIN_URL = 'login' # ログインしていないときのリダイレクト先
 
-LOGIN_REDIRECT_URL = 'index' # ログイン後のリダイレクト先
+LOGIN_REDIRECT_URL = 'dream_list' # ログイン後のリダイレクト先、後日メインページ
 
 LOGOUT_REDIRECT_URL = 'index' # ログアウト後のリダイレクト先

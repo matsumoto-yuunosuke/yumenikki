@@ -110,7 +110,7 @@ def idea_upload(request, pk):
                 try:
                     idea.image_4 = request.FILES['image_4']
                 except:
-                    pass
+                    pass   
                 idea.save()
                 return redirect('idea_detail', pk=form.pk)
     else:

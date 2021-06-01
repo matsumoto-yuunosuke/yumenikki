@@ -10,16 +10,18 @@
 {% block content %}
 <ul class="nav justify-content-center">
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'idea_list' %}">アイディア</a>
+    <a class="nav-link" href="{% url 'dream_list' %}">夢日記</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'dream_list' %}">夢日記</a>
+    <a class="nav-link" href="{% url 'idea_list' %}">アイディア</a>
   </li>
 </ul>
 
 <div class="jumbotron jumbotron-fluid">
-<h1>好きな場所に移動してください</h1>
-<p>まだ2ページしかないけど...</p>
+<h1>ログアウトしました</h1>
+<p>上記からコンテンツに飛べます</p>
+<a href="{% url 'login' %}">ここからLoginページへ</a>
+
 {% endblock content %}
 
 

@@ -1,6 +1,13 @@
 {% extends 'yumenikki/base.html' %}
 
 {% block content %}
+<!--ここは"ナビゲーションバー"です-->
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'idea_list' %}">アイディア</a>
+  </li>
+</ul>
+
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-4">夢の詳細</h1>

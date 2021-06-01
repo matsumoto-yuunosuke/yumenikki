@@ -7,3 +7,4 @@ class LoginForm(auth_forms.AuthenticationForm):
         super().__init__(*args, **kw)
         for field in self.fields.values():
             field.widget.attrs['placeholder'] = field.label
+
