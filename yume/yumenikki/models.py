@@ -20,6 +20,7 @@ class DreamModel(models.Model):
     title = models.CharField(
         verbose_name="タイトル",
         max_length=50,
+        unique=True
     )
     content = models.TextField(
         verbose_name="内容"
@@ -64,8 +65,7 @@ class DreamModel(models.Model):
     dtags = models.ManyToManyField(DreamTag, blank=True)
 
     def __str__(self):
-        return f"{self.title} {self.content} \
-        {self.image_1} {self.image_2} {self.image_3} {self.image_4} {self.create_time} {self.dtags}"
+        return self.title
 
 
 
@@ -81,6 +81,25 @@ class IdeaModel(models.Model):
     class Meta:
         verbose_name = "アイデア"
         verbose_name_plural = 'アイデア'
+
+
+    """views.py idea_id
+    pk == id
+    # 指定したアイデアに紐づいたドリームモデルのid or titleを取得
+    # idだった場合はこれで処理は終了
+    idea_id = IdeaModel.objects.filter(id=idea_id).dream
+    # IdeaModel.objects.filter(id=idea_id) -> 指定したアイデアに紐づいたドリームモデルを取得 -> <QuerySet: [(dream: ~), (title: ~), (content: ~)... ...]>
+    # IdeaModel.objects.filter(id=idea_id).dream -> 上の中からdreamのみ取得 -> idかtitileかわからない？
+
+    # idの場合はそれをreturnで返すだけ。
+
+    # titleのばあい...
+    idea_id = DreamModel.objects.get(title=idea_title).id -> ドリームモデルのタイトルの中から先ほど取得したタイトルが一致するデータを取得して、そのidを取得
+
+    # idea_title = IdeaModel.objects.get(id=idea_id).title   # IdeaModelからtitleを取得したい場合...
+    return redirect ~
+
+    """
     
     dream = models.ForeignKey(
         DreamModel,
@@ -91,6 +110,7 @@ class IdeaModel(models.Model):
     title = models.CharField(
         verbose_name="タイトル",
         max_length=50,
+        unique=True
     )
     content = models.TextField(
         verbose_name="内容"
