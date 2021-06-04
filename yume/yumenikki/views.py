@@ -32,7 +32,7 @@ def dream_detali_view(request, pk):
 class DreamUpdate(generic.UpdateView):
     template_name = 'yumenikki/dream_update.html'
     model = DreamModel
-    fields = ('title', 'content', 'create_time')
+    fields = ('title', 'content', 'image_1', 'image_2', 'image_3', 'image_4')
     success_url = reverse_lazy('dream_list')
 
 class DreamDelete(generic.DeleteView):
@@ -46,30 +46,11 @@ def dream_upload(request):
     if request.method == "POST":
         form = UploadImgForm(request.POST)
         if form.is_valid():
-            dream = DreamModel()
-            print(request)
-            dream.title = request.POST['title']
-            dream.content = request.POST['content']
-            dream.create_time = request.POST['create_time']
-            try:
-                dream.image_1 = request.FILES['image_1']
-            except:
-                pass
-            try:
-                dream.image_2 = request.FILES['image_2']
-            except:
-                pass
-            try:
-                dream.image_3 = request.FILES['image_3']
-            except:
-                pass
-            try:
-                dream.image_4 = request.FILES['image_4']
-            except:
-                pass
-            dream.dtags = request.POST['dtags']
-            dream.save()
-            return redirect('dream_detail', pk=dream.pk)
+            date = UploadImgForm(request.POST, request.FILES, instance=DreamModel())
+            date.save()
+            title: str = str(request.POST["title"])
+            idea_id: int = DreamModel.objects.filter(title=title)[0].id
+            return redirect('dream_detail', pk=idea_id)
     else:
         form = UploadImgForm()
     return render(request, 'yumenikki/dream_create.html', {'form': form})
