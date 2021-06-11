@@ -1,10 +1,20 @@
+from django import forms
+from django.contrib.auth import get_user_model
 
-from django.contrib.auth import forms as auth_forms
+class UserCreationForm(forms.ModelForm):
+    password = forms.CharField()
 
-class LoginForm(auth_forms.AuthenticationForm):
-    '''ログインフォーム'''
-    def __init__(self, *args, **kw):
-        super().__init__(*args, **kw)
-        for field in self.fields.values():
-            field.widget.attrs['placeholder'] = field.label
+    class Meta:
+        model = get_user_model()
+        fields = ('username',)
+    
+    def clean_password(self):
+        password = self.cleaned_data.get("password")
+        return password
 
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password"])
+        if commit:
+            user.save()
+        return user

@@ -25,9 +25,6 @@ def dream_detali_view(request, pk):
     context = {"dreammodel":obj}
     return render(request, 'yumenikki/dream_detail.html', context)
 
-# class DreamIdeaDetail(generic.DetailView):
-#     template_name = 'yumenikki/dream_idea_detail.html'
-#     model = DreamModel
 
 class DreamUpdate(generic.UpdateView):
     template_name = 'yumenikki/dream_update.html'
@@ -143,10 +140,8 @@ class IdeaDelete(generic.DeleteView):
 def tags(request, slug):
     tag = DreamTag.objects.get(slug=slug)
     objs = tag.dreammodel_set.all()
-    # ranks = DreamModel.objects.order_by('-count')[:2]
 
     context = {
         'dreams':objs,
-        # 'ranks':ranks,
     }
     return render(request, 'yumenikki/tags_list.html', context)
