@@ -128,6 +128,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+AUTH_USER_MODEL = 'yumenikki.User'
 
 # 一番最後に追加してください
 # CSSファイルや画像ファイルが入っている、staticディレクトリの場所をDjango側に教えてあげます。
@@ -139,8 +140,23 @@ IMAGE_ROOT = os.path.join(BASE_DIR, 'media')
 
 IMAGE_URL = '/media/'
 
-LOGIN_URL = 'login' # ログインしていないときのリダイレクト先
+LOGIN_URL = '/login/' # ログインしていないときのリダイレクト先
 
-LOGIN_REDIRECT_URL = 'dream_list' # ログイン後のリダイレクト先、後日メインページ
+LOGIN_REDIRECT_URL = '/dream_list/' # ログイン後のリダイレクト先、後日メインページ
 
-LOGOUT_REDIRECT_URL = 'index' # ログアウト後のリダイレクト先
+LOGOUT_URL = '/logout/'
+
+LOGOUT_REDIRECT_URL = '/dream_list/' 
+# ログアウト後のリダイレクト先、
+# 後ほどトップページを作成し、そこに飛ばす？
+
+# --------- massage tab with bootstrap alert class ---------------------
+from django.contrib import messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'rounded-0 alert alert-danger',
+    messages.WARNING: 'rounded-0 alert alert-warning',
+    messages.SUCCESS: 'rounded-0 alert alert-success',
+    messages.INFO: 'rounded-0 alert alert-info',
+    messages.DEBUG: 'rounded-0 alert alert-secondary',
+ }
+# --------- massage tab with bootstrap alert class ---------------------

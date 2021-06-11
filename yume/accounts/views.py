@@ -1,25 +1,32 @@
-from django.shortcuts import render
-from django.contrib.auth.views import LoginView, LogoutView
-# from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView,CreateView
-from django.contrib.auth.forms import UserCreationForm
-from django.urls import reverse_lazy
-from django.views.generic import TemplateView
+from django.shortcuts import render, redirect
 from . import forms
+from django.contrib.auth.views import LoginView
+from .forms import UserCreationForm
+from django.contrib import messages
 
 # Create your views here.
 
-class MyLoginView(LoginView):
-    form_class = forms.LoginForm
-    template_name = "accounts/login.html"
+class Login(LoginView):
+    template_name = "accounts/auth.html"
 
-class MyLogoutView(LogoutView):
-    template_name = "accounts/logout.html"
+    def from_valid(self, form):
+        messages.success(self.request, 'ログインできました！')
+        return super().form_valid(form)
 
-class IndexView(TemplateView):
-    template_name = "accounts/index.html"
+    def form_invalid(self, form):
+        messages.error(self.request, 'エラーです...')
+        return super().form_invalid(form)
 
-class UserCreateView(CreateView):
-    form_class = UserCreationForm
-    template_name = "accounts/create.html"
-    success_url = reverse_lazy("login")
+
+def signup(request):
+    context = {}
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.save
+            messages.success(request, '登録できました！')
+            return redirect('/')
+    return render(request, 'accounts/auth.html', context)
+
+
