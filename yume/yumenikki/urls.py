@@ -14,4 +14,5 @@ urlpatterns = [
   path('idea_create/<int:pk>/', views.idea_upload, name='idea_create'),
   path('idea_delete/<int:pk>/', views.IdeaDelete.as_view(), name='idea_delete'),
   path('tags/<slug:slug>/', views.tags, name='tags'),
+  path('calendar/<int:pk>/<int:year>/<int:month>', views.CalendarView.as_view(), name='calendar'),
 ]

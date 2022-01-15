@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Group
-from .models import DreamModel, IdeaModel, DreamTag, User
+from .models import DreamModel, IdeaModel, DreamTag, User, Booking
 
 # Register your models here.
 class CutomUserAdmin(UserAdmin):
@@ -37,3 +37,4 @@ admin.site.register(IdeaModel)
 admin.site.register(DreamTag)
 admin.site.unregister(Group)
 admin.site.register(User, CutomUserAdmin)
+admin.site.register(Booking)
