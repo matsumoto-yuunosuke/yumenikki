@@ -13,7 +13,7 @@
     <a class="nav-link active" href="{% url 'dream_list' %}">夢日記</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'create' %}">新規登録</a>
+    <a class="nav-link" href="{% url 'signup' %}">新規登録</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{% url 'logout' %}">ログアウト</a>
@@ -42,6 +42,9 @@
   </div>
   {% endfor %} {% endcomment %}
 
+  <h1 class="display-1">
+    アイディア投稿一覧
+  </h1>
   {% for idea in ideas %}
     <div class="one_box">
       <h1>{{ idea.title }}</h1>

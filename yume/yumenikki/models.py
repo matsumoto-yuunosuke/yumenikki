@@ -1,6 +1,8 @@
+from email.policy import default
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+from django.utils import timezone
 
 # Create your models here.
 class UserManager(BaseUserManager):
@@ -205,3 +207,17 @@ class IdeaModel(models.Model):
     def __str__(self):
         return f"{self.dream} {self.title} {self.content} \
         {self.image_1} {self.image_2} {self.image_3} {self.image_4} {self.create_time}"
+        
+# カレンダーモデル       
+class Booking(models.Model):
+    member = models.ForeignKey(DreamModel, verbose_name='テスト夢', on_delete=models.CASCADE)
+    nick_name = models.CharField('ニックネーム', max_length=100, null=True, blank=True)
+    place = models.TextField('招待url', default='')
+    start = models.DateTimeField('開始時間', default=timezone.now)
+    end = models.DateTimeField('終了時間', default=timezone.now)
+    
+    def __str__(self):
+        start = timezone.localtime(self.start).strftime('%Y/%m/%d %H:%M')
+        end = timezone.localtime(self.end).strftime('%Y/%m/%d %H:%M')
+        
+        return f'{self.nick_name} {start} ~ {end}'
