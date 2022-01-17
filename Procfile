@@ -1,0 +1,1 @@
+web: gunicorn yumenikki.wsgi --log-file -
