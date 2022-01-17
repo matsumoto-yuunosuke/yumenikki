@@ -1,13 +1,6 @@
 {% extends 'yumenikki/base.html' %}
 
 {% block content %}
-<!--ここは"ナビゲーションバー"です-->
-<ul class="nav justify-content-center">
-  <li class="nav-item">
-    <a class="nav-link" href="{% url 'idea_list' %}">アイディア</a>
-  </li>
-</ul>
-
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-4">夢の詳細</h1>
@@ -46,7 +39,7 @@
 
     <div class="container">
         <p class="btn-content"><a href="{% url 'dream_list' %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">一覧に戻る</a></p>
-        <p class="btn-content"><a href="{% url 'idea_create' dreammodel.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">新規作成</a></p>
+        <p class="btn-content"><a href="{% url 'idea_create' dreammodel.pk %}" class="btn btn-success btn-lg" tabindex="-1" role="button" aria-disabled="true">この夢のアイディアを作成</a></p>
         {% comment %}
          このエラーを解決すればカレンダー機能実装終了
          <a href="{% url 'calendar' dream.pk %}" class="stretched-link">予約画面へ</a> {% endcomment %}
