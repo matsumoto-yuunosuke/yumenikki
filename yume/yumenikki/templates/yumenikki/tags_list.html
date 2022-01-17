@@ -12,12 +12,12 @@
   <li class="nav-item">
     <a class="nav-link" href="{% url 'idea_list' %}">アイディア</a>
   </li>
-  <li class="nav-item">
+  {% comment %} <li class="nav-item">
     <a class="nav-link" href="{% url 'signup' %}">新規登録</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{% url 'logout' %}">ログアウト</a>
-  </li>
+  </li> {% endcomment %}
 </ul>
 
 <div class="jumbotron jumbotron-fluid">
@@ -40,8 +40,8 @@
       <h4>{{ dream.create_time }}</h4>
         <div class="btns">
           <p class="btn-content"><a href="{% url 'dream_detail' dream.pk %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">詳細</a></p>
-          <p class="btn-content"><a href="{% url 'dream_update' dream.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">編集</a></p>
-          <p class="btn-content"><a href="{% url 'dream_delete' dream.pk %}" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="true">削除</a></p>
+          {% comment %} <p class="btn-content"><a href="{% url 'dream_update' dream.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">編集</a></p>
+          <p class="btn-content"><a href="{% url 'dream_delete' dream.pk %}" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="true">削除</a></p> {% endcomment %}
         </div>
     </div>
   <hr>

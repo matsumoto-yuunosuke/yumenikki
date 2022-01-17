@@ -12,18 +12,18 @@
   <li class="nav-item">
     <a class="nav-link active" href="{% url 'dream_list' %}">夢日記</a>
   </li>
-  <li class="nav-item">
+  {% comment %} <li class="nav-item">
     <a class="nav-link" href="{% url 'signup' %}">新規登録</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{% url 'logout' %}">ログアウト</a>
-  </li>
+  </li> {% endcomment %}
 </ul>
 
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="display-4">アイディアを表示</h1>
-        <p class="lead">ここでアイディアを見れます</p>
+        <h1 class="display-4">アイディア</h1>
+        <p class="lead">投稿した夢から思いついたヤツ</p>
     </div>
 </div>
 <div class="container ">
@@ -43,7 +43,7 @@
   {% endfor %} {% endcomment %}
 
   <h1 class="display-1">
-    アイディア投稿一覧
+    アイディア一覧
   </h1>
   {% for idea in ideas %}
     <div class="one_box">
@@ -53,8 +53,8 @@
   <hr>
 
   <div class="btns">
-          <p class="btn-content"><a href="{% url 'idea_detail' idea.pk %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">詳細</a></p>
-          <p class="btn-content"><a href="{% url 'idea_delete' idea.pk %}" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="true">削除</a></p>
+          <p class="btn-content"><a href="{% url 'idea_detail' idea.pk %}" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="true">詳細</a></p>
+          {% comment %} <p class="btn-content"><a href="{% url 'idea_delete' idea.pk %}" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="true">削除</a></p> {% endcomment %}
   </div>
   {% endfor %}
 </div>
